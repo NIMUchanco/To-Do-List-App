@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScratchWave</title>
+
+    <link rel="icon" type="image/png" href="assets/notepad.png" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap" rel="stylesheet">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>ScratchWave</h1>
+    </header>
+
+    <main>
+        <section id="insert">
+            <form id="insert-form">
+                    <h2>Write your task:</h2>
+                    <p>
+                        <label for="note_subject">Subject:</label>
+                        <input type="text" name="note_subject" placeholder="Subject" id="note_subject"/>
+                    </p>
+                    <div class="txt-area-char">
+                        <label for="note_text">Your note:</label>
+                        <textarea name="note_text" id="note_text" cols="30" rows="10" placeholder="Text"></textarea>
+                        <p id="char-count">600</p>
+                    </div>
+                    <div class="error-msg">
+                        <p>Oops, seems like subject or text is missing, please fill it.</p>
+                    </div>
+                    <section>
+                        <p class="button-container">
+                            <a href="#" type="submit" id="submit">Post</a>
+                        </p>
+                    </section>
+            </form>
+            
+        </section>
+
+        <section class="icons">
+            <button id="all-notes">
+                <i class="fa-solid fa-list-check"></i>
+            </button>
+            <button id="shuffle">
+                <i class="fa-solid fa-shuffle"></i>
+            </button>
+            <button id="sh-checked">
+                <i class="fa-solid fa-check"></i>
+            </button>
+            <button id="inwork">
+                <i class="fa-solid fa-hourglass"></i>
+            </button>
+        </section>
+
+        <section id="display"></section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
