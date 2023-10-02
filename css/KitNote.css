@@ -348,6 +348,10 @@ textarea {
     width: 100%;
 }
 
+#display::-webkit-scrollbar {
+    width: 0;
+}
+
 .disabled-button {
     pointer-events: none; /* Disable clicking */
     opacity: 0.5; /* Reduce opacity to visually indicate disabled state */
