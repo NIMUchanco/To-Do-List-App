@@ -1,0 +1,354 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin and padding
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+    isolation: isolate;
+}
+
+:root {
+    --bg_color: #f2f7f2;
+    --primary_color: #ce7b91;
+    --secondary_color: #ffc800;
+    --tertiary_color: #ae9cac;
+    --text_color: #262626;
+
+    /* heading font sizes */
+    --fs-h1: 2.25em;
+    /* 36px / 16px = 2.25em */
+    --fs-h2: 2em;
+    /* 32px / 16px = 2em */
+    --fs-h3: 1.75em;
+    /* 28px / 16px = 1.75em */
+    --fs-h4: 1.5em;
+    /* 24px / 16px = 1.5em */
+    --fs-h5: 1.25em;
+    /* 20px / 16px = 1.25em */
+    --fs-h6: 1.125em;
+    /* 18px / 16px = 1.125em */
+
+    /* smaller than heading font sizes */
+    --fs-milli: 0.875em;
+    /* 14px / 16px = 0.875em */
+    --fs-micro: 0.625em;
+    /* 10px / 16px = 0.625em */
+    --fs-nano: 0.5em;
+    /* 8px / 16px = 0.5em */
+
+    --fs-body: 1rem;
+
+}
+
+/* GENERAL */
+
+body {
+    font-family: "Red Hat Display", sans-serif;
+    background-color: var(--bg_color);
+    color: var(--text_color);
+    font-size: var(--fs-body);
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2em;
+    justify-items: center;
+    padding: 1em;
+}
+
+h1 {
+    font-size: var(--fs-h1);
+    font-weight: 200;
+}
+
+h2 {
+    font-size: var(--fs-h2);
+    padding-bottom: 1em;
+}
+
+li {
+    list-style: none;
+}
+
+/* LOADING ANIMATION */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#loading img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* LOGIN */
+
+.highlight {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, var(--secondary_color) 70%);
+}
+
+input {
+    width: 100%;
+    padding: 1em;
+    font-size: var(--fs-body);
+    outline: none;
+    border: 2px solid var(--text_color);
+    border-radius: 0.5em 0.5em 0 0;
+    background: transparent;
+}
+
+#login_pass {
+    border-radius: 0 0 0.5em 0.5em;
+    border-top: none;
+}
+
+input:focus {
+    border: 3px solid var(--primary_color);
+}
+
+/* SIGN UP */
+
+#signup-form input:nth-child(2) {
+    border-radius: 0;
+    border-top: none;
+}
+
+#signup-form input:nth-child(3) {
+    border-radius: 0;
+    border-top: none;
+}
+
+#signup-form input:nth-child(4) {
+    border-radius: 0 0 0.5em 0.5em;
+    border-top: none;
+}
+
+.terms {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.terms input {
+    width: auto;
+}
+
+.terms span {
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+
+.message {
+    text-align: center;
+    margin-top: 2em;
+}
+
+button {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    font-size: var(--fs-body);
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    background: var(--text_color);
+    color: var(--bg_color);
+}
+
+#signin-button,
+#signup-button {
+    width: 100%;
+    padding: 0.5em 5em;
+    font-size: var(--fs-body);
+    outline: none;
+    border: none;
+    border-radius: 2em;
+    background: var(--text_color);
+    color: var(--bg_color);
+    box-shadow: var(--primary_color) -2px 2px 0px 2px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+/* Note page */
+
+#note_subject {
+    width: 100%;
+    padding: 1em;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    outline: none;
+    border: none;
+    border-radius: 0;
+    background: var(--text_color);
+    color: var(--bg_color);
+    margin-top: 1em;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 1em;
+    font-size: var(--fs-body);
+    outline: none;
+    border: none;
+    border-radius: 0;
+    background: var(--text_color);
+    color: var(--bg_color);
+}
+
+.txt-area-char p {
+    margin-bottom: 1.5em;
+}
+
+#submit {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--primary_color);
+    color: var(--text_color);
+    width: 40px;
+    height: 40px;
+    padding: 1em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CARD */
+
+.card {
+    /* width: clamp(300px, 100%, 400px); */
+    width: clamp(32ch, 50%, 70ch);
+    padding: 1em;
+    font-size: var(--fs-body);
+    outline: none;
+    border: none;
+    background: var(--tertiary_color);
+    color: var(--text_color);
+    border-radius: 0.5em;
+    margin: 15px auto;
+}
+
+.card h3 {
+    font-size: var(--fs-h5);
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.card p {
+    font-size: var(--fs-milli);
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.time-grid {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+#error-message-in,
+#error-message-up {
+    background-color: rgba(255, 0, 0, 0.3);
+    text-align: center;
+}
+
+.error-msg {
+    visibility: hidden;
+}
+
+#display {
+    max-height: 500px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.disabled-button {
+    pointer-events: none; /* Disable clicking */
+    opacity: 0.5; /* Reduce opacity to visually indicate disabled state */
+}

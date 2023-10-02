@@ -1,8 +1,7 @@
 <?php
-
-    session_start();
     //connect to db
     require_once "_includes/db_connect.php";
+
 
     //prepare the statement passing the db $link and the SQL
     // removed ORDER BY timestamp DESC - reverse show of data
@@ -18,36 +17,22 @@
     // example 4.2
     // works
     // $stmt = mysqli_prepare($link, "SELECT * FROM relational_note, relational_users WHERE relational_note.userID = relational_users.userID");
-    $stmt = mysqli_prepare($link, "SELECT * FROM relational_note WHERE relational_note.userID = ? ORDER BY timestamp DESC");
 
-    if ($stmt) {
-        // Bind the user ID from the session to the statement
-        mysqli_stmt_bind_param($stmt, "i", $_SESSION['userID']);
-    
-        // Execute the statement
-        mysqli_stmt_execute($stmt);
-    
-        // Get results
-        $result = mysqli_stmt_get_result($stmt);
-    
-        // Initialize the results array
-        $results = [];
-    
-        // Loop through the results
-        while ($row = mysqli_fetch_assoc($result)) {
-            $results[] = $row;
-        }
-    
-        // Encode and display JSON
-        echo json_encode($results);
-        
-        // Close the statement
-        mysqli_stmt_close($stmt);
-    } else {
-        // Handle the error here
-        echo json_encode(['error' => mysqli_error($link)]);
+    $stmt = mysqli_prepare($link, "SELECT * FROM relational_note, relational_users WHERE relational_note.userID = relational_users.userID");
+    //execute the statement / query from above
+    mysqli_stmt_execute($stmt);
+
+    //get results
+    $result = mysqli_stmt_get_result($stmt);
+
+    // loop through
+    while ($row = mysqli_fetch_assoc($result)) {
+        $results[] = $row;
     }
-    
-    // Close the link to the database
+
+    //encode and display JSON
+    echo json_encode($results);
+
+    //close the link to the db
     mysqli_close($link);
 ?>

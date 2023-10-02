@@ -10,7 +10,7 @@ try {
 
     $noteId = $_POST["note_id"];
     //changes the isChecked value to the opposite of what it is
-    $query = "UPDATE note_app SET isChecked = CASE WHEN isChecked = 0 THEN 1 ELSE 0 END WHERE noteID = ?";
+    $query = "UPDATE relational_note SET isChecked = CASE WHEN isChecked = 0 THEN 1 ELSE 0 END WHERE noteID = ?";
     
     if ($stmt = mysqli_prepare($link, $query)) {
         mysqli_stmt_bind_param($stmt, 'i', $noteId);
@@ -19,6 +19,7 @@ try {
         
         if ($affectedRows > 0) {
             $results[] = [
+                "success" => "Action successful",
                 "message" => "Note's isChecked toggled",
                 "note_id" => $noteId
             ];

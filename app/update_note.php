@@ -11,7 +11,7 @@ try {
     $noteId = $_POST["noteID"];
     // Changes the isChecked value to the opposite of what it is
     //manually update timestamp cuz it's set to CURRENT_TIMESTAMP() in the database but it doesn't update automatically
-    $query = "UPDATE note_app SET noteSubject = ?, noteText = ?, `timestamp` = CURRENT_TIMESTAMP() WHERE noteID = ?";
+    $query = "UPDATE relational_note SET noteSubject = ?, noteText = ?, `timestamp` = CURRENT_TIMESTAMP() WHERE noteID = ?";
 
     if ($stmt = mysqli_prepare($link, $query)) {
         mysqli_stmt_bind_param($stmt, 'ssi', $_REQUEST["noteSubject"], $_REQUEST["noteText"], $_REQUEST["noteID"]);
@@ -20,6 +20,7 @@ try {
 
         if ($affectedRows > 0) {
             $results[] = [
+                "success" => "Action successful",
                 "message" => "Note's fields updated",
                 "noteID" => $noteId
             ];
