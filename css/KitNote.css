@@ -143,19 +143,22 @@ li {
 }
 
 /* LOADING ANIMATION */
+
 #loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    background-color: rgb(230, 223,221);
     width: 100vw;
     height: 100vh;
+    position: fixed;
+    top: 0;
 }
 
 #loading img {
+    position: fixed;
     width: 100vw;
-    height: 100vh;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
     object-fit: cover;
 }
 
