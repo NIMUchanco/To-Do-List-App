@@ -21,7 +21,7 @@
         }
 
         // Check if the username already exists
-        $checkQuery = "SELECT COUNT(*) FROM relational_users WHERE user_name = ?";
+        $checkQuery = "SELECT COUNT(*) FROM relational_users WHERE user_email = ?";
         if ($checkStmt = mysqli_prepare($link, $checkQuery)) {
             mysqli_stmt_bind_param($checkStmt, 's', $_REQUEST["email"]);
             mysqli_stmt_execute($checkStmt);
@@ -40,7 +40,7 @@
         $hashedPassword = password_hash($_REQUEST["password"], PASSWORD_DEFAULT);
 
         // SQL query to insert a new user into the database
-        $insertQuery = "INSERT INTO relational_users (user_name, username, user_password) VALUES (?, ?, ?)";
+        $insertQuery = "INSERT INTO relational_users (user_email, username, user_password) VALUES (?, ?, ?)";
         if ($insertStmt = mysqli_prepare($link, $insertQuery)) {
             mysqli_stmt_bind_param($insertStmt, 'sss', $_REQUEST["email"], $_REQUEST["username"], $hashedPassword);
             mysqli_stmt_execute($insertStmt);
@@ -49,7 +49,7 @@
                 // Set session variables after successful signup
                 $_SESSION['verify'] = true;
                 $_SESSION['userID'] = $link->insert_id; // Assuming you want to use the newly inserted user's ID
-                $_SESSION['user_name'] = $_REQUEST["email"];
+                $_SESSION['user_email'] = $_REQUEST["email"];
                 $_SESSION['username'] = $_REQUEST["username"];
                 $_SESSION['logged_in'] = true;
 
@@ -57,7 +57,7 @@
                     "insertedRows" => $insertedRows,
                     "success" => "Action successful",
                     "userID" => $link->insert_id,
-                    "username" => $_REQUEST["email"]
+                    "user_email" => $_REQUEST["email"]
                 ];
             } else {
                 throw new Exception("No rows were inserted");
