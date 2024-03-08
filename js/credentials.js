@@ -1,18 +1,12 @@
 import { displayData } from "./script.js";
 
 const signUp = document.querySelector('#sign-up');
-const insert = document.querySelector('#insert');
 const loginForm = document.querySelector('#login-form');
 const logoutBtn = document.querySelector('#logout-btn');
 const icons = document.querySelector('.icons');
 const display = document.querySelector('#display');
-signUp.style.display = 'none';
-insert.style.display = 'none';
-icons.style.display = 'none';
-logoutBtn.style.display = 'none';
-display.style.display = 'none';
 
-//loading page
+// loading page
 setTimeout(() => {
     const loadingPage = document.querySelector('#loading');
     if (loadingPage) {
@@ -20,27 +14,27 @@ setTimeout(() => {
         signUp.style.display = 'block';
         display.style.display = 'block';
     }
-}, 1500);
+}, 1000);
 
 // check if logged in
 const checkLogin = async () => {
-    let url = 'app/login_check.php';
+    const url = 'app/login_check.php';
     const response = await fetch(url);
     const confirmation = await response.json();
     console.log(confirmation);
 
     if(!confirmation[0].verify) {
         //show login form
-        //signUp.style.display = 'block';
         icons.style.display = 'none';
         logoutBtn.style.display = 'none';
+        display.style.display = 'none';
 
     } else {
         greetUser(confirmation[0].username);
         //show insert form
-        insert.style.display = 'block';
-        icons.style.display = 'block';
+        icons.style.display = 'grid';
         logoutBtn.style.display = 'block';
+        display.style.display = 'block';
 
         let note = await fetchNotes('app/select.php');
         displayData(note);
@@ -48,7 +42,6 @@ const checkLogin = async () => {
 }
 
 checkLogin();
-
 
 //timestamp function
 export const getTimestamp = (timestamp) => {
@@ -101,8 +94,7 @@ const logout = async () => {
     window.location.reload();
 }
 
-const logoutButton = document.querySelector('#logout-btn');
-logoutButton.addEventListener('click', logout);
+logoutBtn.addEventListener('click', logout);
 
 
 // function to finduser
@@ -158,8 +150,7 @@ loginForm.addEventListener('submit', async (e) => {
         logoutBtn.style.display = 'block';
         loginForm.reset();
         signUp.innerHTML = '';
-        insert.style.display = 'block';
-        icons.style.display = 'block';
+        icons.style.display = 'grid';
         display.style.display = 'block';
         
         //call function to greet user
@@ -172,8 +163,7 @@ loginForm.addEventListener('submit', async (e) => {
         errorMessageDiv.innerHTML = '<p>Wrong email or password</p>';
         setTimeout(() => {
             errorMessageDiv.innerHTML = ''; // Clear the error message
-        }, 3000); // 3000 milliseconds (3 seconds)
-        // alert('Wrong username or password');
+        }, 3000);
     }
 });
 
@@ -193,7 +183,6 @@ export const inserter = async (data, url) => {
         if (!confirmation[0].error && confirmation[0].success === 'Action successful') {
             let note = await fetchNotes('app/select.php');
             displayData(note);
-            insert.style.display = 'block';
             display.style.display = 'block';
             status = true;
 
@@ -231,8 +220,7 @@ signupForm.addEventListener('submit', async (e) => {
         errorMessageDiv.innerHTML = '<p>Passwords do not match</p>';
         setTimeout(() => {
             errorMessageDiv.innerHTML = ''; // Clear the error message
-        }, 3000); // 3000 milliseconds (3 seconds)
-        insert.style.display = 'none';
+        }, 3000);
         return; // Exit the function to prevent form submission
     }
 
@@ -242,8 +230,7 @@ signupForm.addEventListener('submit', async (e) => {
         errorMessageDiv.innerHTML = '<p>Password must be at least 8 characters long</p>';
         setTimeout(() => {
             errorMessageDiv.innerHTML = ''; // Clear the error message
-        }, 3000); // 3000 milliseconds (3 seconds)
-        insert.style.display = 'none';
+        }, 3000);
         return; // Exit the function to prevent form submission
     }
 
@@ -253,7 +240,7 @@ signupForm.addEventListener('submit', async (e) => {
 
     if (signupSuccess) {
         logoutBtn.style.display = 'block';
-        icons.style.display = 'block';
+        icons.style.display = 'grid';
         display.style.display = 'none';
 
         //call function to greet user
@@ -267,13 +254,12 @@ signupForm.addEventListener('submit', async (e) => {
         errorMessageDiv.innerHTML = '<p>Email already exists</p>';
         setTimeout(() => {
             errorMessageDiv.innerHTML = ''; // Clear the error message
-        }, 3000); // 3000 milliseconds (3 seconds)
+        }, 3000);
         logoutBtn.style.display = 'none';
         icons.style.display = 'none';
         display.style.display = 'none';
     }
 });
-
 
 //log in - sign up change
 document.querySelector('#showSignUpLink').addEventListener('click', (e) => {
