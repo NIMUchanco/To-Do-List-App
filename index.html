@@ -14,9 +14,7 @@
         rel="stylesheet" />
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/KitNote.css">
@@ -24,85 +22,93 @@
 </head>
 <body>
     <header>
-        <h1>KitNote</h1>
-        <div>
+        <figure>
             <img src="images/icons8-cat-67.png" alt="">
-        </div>
+            <h1>KitNote</h1>
+        </figure>
+        <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
     </header>
 
     <main>
         <div id="loading"><img src="images/loading.gif" alt=""></div>
-        <section id="sign-up">
-            <div class="container" id="signin">
-                <h2><span class="highlight">Log In</span></h2>
-                <form action="#" method="post" id="login-form" class="input">
-                    <input id="login_username" type="text" name="username" placeholder="email" required>
-                    <input id="login_pass" type="password" name="password" placeholder="password" required>
-                    <p class="message">Don't have an account? <a href=""  id="showSignUpLink">Sign Up</a></p>
-                    <button type="submit" id="signin-button">Log In</button>
-                    <div id="error-message-in"></div>
-                </form>
-            </div>
-        
-            <div class="container" id="signup" style="display: none;">
-                <h2><span class="highlight">Sign up</span></h2>
-                <form action="#" method="post" id="signup-form">
-                    <input type="text" name="email" placeholder="email" required>
-                    <input id="username" type="text" name="username" placeholder="username" required>
-                    <input id="password" type="password" name="password" placeholder="password" required>
-                    <input id="confirm_password" type="password" name="confirm_password" placeholder="confirm password" required>
-                    <div class="terms">
-                        <input type="checkbox" value="checkbox" name="checkbox" required>
-                        <span>agree to terms and conditions</span>
-                    </div>
-                    <p class="message">Already have an account? <a href="" id="showSignInLink">Log In</a></p>
-                    <button type="submit" id="signup-button">Sign Up</button>
-                    <div id="error-message-up"></div>
-                </form>
-            </div>
-        </section>
-
-        <div id="error-message"></div>
-
-        <section id="insert">
-            <form id="insert-form">
-                <h3>Write your task:</h3>
-                <p>
-                    <input type="text" name="note_subject" placeholder="Subject" id="note_subject" />
-                </p>
-                <div class="txt-area-char">
-                    <textarea name="note_text" id="note_text" cols="30" rows="10" placeholder="Text"></textarea>
-                    <p id="char-count">600</p>
+        <div class="container">
+            <section id="sign-up">
+                <div id="signin">
+                    <h2><span class="highlight">Log In</span></h2>
+                    <form action="#" method="post" id="login-form" class="input">
+                        <input id="login_username" type="text" name="username" placeholder="username" required>
+                        <input id="login_pass" type="password" name="password" placeholder="password" required>
+                        <p class="message">Don't have an account?
+                            <a href=""  id="showSignUpLink">Sign Up <i class="fa-solid fa-right-to-bracket"></i></a>
+                        </p>
+                        <button type="submit" id="signin-button">Log In</button>
+                        <div id="error-message-in"></div>
+                    </form>
                 </div>
-                <section>
-                    <p class="button-container">
-                        <a href="#" type="submit" id="submit"><i class="fa-solid fa-plus"></i></a>
+            
+                <div id="signup" style="display: none;">
+                    <h2><span class="highlight">Sign up</span></h2>
+                    <form action="#" method="post" id="signup-form">
+                        <input id="username" type="text" name="username" placeholder="username" required>
+                        <input type="email" name="email" placeholder="email" required>
+                        <input id="password" type="password" name="password" placeholder="password" required>
+                        <input id="confirm_password" type="password" name="confirm_password" placeholder="confirm password" required>
+                        <p class="message">Already have an account?
+                            <a href="" id="showSignInLink">Log In <i class="fa-solid fa-right-to-bracket"></i></a>
+                        </p>
+                        <button type="submit" id="signup-button">Sign Up</button>
+                        <div id="error-message-up"></div>
+                    </form>
+                </div>
+            </section>
+
+            <div id="error-message"></div>
+
+            <div class="mask"><i class="fa-solid fa-xmark"></i></div>
+
+            <section id="insert">
+                <form id="insert-form">
+                    <h3>Write your task:</h3>
+                    <p>
+                        <input type="text" name="note_subject" placeholder="Subject" id="note_subject"/>
                     </p>
-                </section>
-                <div class="error-msg">
-                    <p>Oops, seems like subject or text is missing, please fill it.</p>
+                    <div class="txt-area-char">
+                        <textarea name="note_text" id="note_text" cols="30" rows="10" placeholder="Text"></textarea>
+                        <p id="char-count">600</p>
+                    </div>
+                    <section>
+                        <p class="button-container">
+                            <a href="#" type="submit" id="submit"><i class="fa-solid fa-arrow-up"></i></a>
+                        </p>
+                    </section>
+                    <div class="error-msg">
+                        <p>Oops, seems like subject or text is missing, please fill it.</p>
+                    </div>
+                </form>
+            </section>
+
+            <section class="icons">
+                <div class="container">
+                    <button id="all-notes">
+                        <i class="fa-solid fa-list-check"></i>
+                    </button>
+                    <button id="shuffle">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                    <button id="sh-checked">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                    <button id="inwork">
+                        <i class="fa-solid fa-hourglass"></i>
+                    </button>
+                    <button id="open">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
                 </div>
-            </form>
-        </section>
+            </section>
 
-        <section class="icons">
-            <button id="all-notes">
-                <i class="fa-solid fa-list-check"></i>
-            </button>
-            <button id="shuffle">
-                <i class="fa-solid fa-shuffle"></i>
-            </button>
-            <button id="sh-checked">
-                <i class="fa-solid fa-check"></i>
-            </button>
-            <button id="inwork">
-                <i class="fa-solid fa-hourglass"></i>
-            </button>
-        </section>
-
-        <section id="display"></section>
-        <button id="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-        
+            <section id="display"></section>
+        </div>
     </main>
 
     <script type="module" src="js/script.js"></script>
